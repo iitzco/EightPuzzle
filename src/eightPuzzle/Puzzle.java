@@ -6,7 +6,6 @@ import gps.api.GPSProblem;
 import gps.api.GPSRule;
 import gps.api.GPSState;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +21,7 @@ public class Puzzle implements GPSProblem {
 			System.out.println("Solution (if any) too deep for stack.");
 		}
 	}
+
 
 	@Override
 	public GPSState getInitState() {
@@ -43,11 +43,8 @@ public class Puzzle implements GPSProblem {
 
 	@Override
 	public List<GPSRule> getRules() {
-		List<GPSRule> rules = new LinkedList<GPSRule>();
-		for (Direction d : Direction.values()) {
-			rules.add(new PuzzleRule(d));
-		}
-		return rules;
+		//TODO
+		return null;
 	}
 
 	// Valor Heurística para A*
