@@ -41,6 +41,6 @@ public class GPSNode {
 		if (this.parent == null) {
 			return this.state.toString();
 		}
-		return this.parent.getSolution() + "\n" + this.state;
+		return this.parent.getSolution() + this.state;
 	}
 }
