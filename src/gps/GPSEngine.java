@@ -11,14 +11,14 @@ import java.util.List;
 
 public abstract class GPSEngine {
 
-	private List<GPSNode> open = new LinkedList<GPSNode>();
+	protected List<GPSNode> open = new LinkedList<GPSNode>();
 
-	private List<GPSNode> closed = new ArrayList<GPSNode>();
+	protected List<GPSNode> closed = new ArrayList<GPSNode>();
 
-	private GPSProblem problem;
+	protected GPSProblem problem;
 
 	// Use this variable in the addNode implementation
-	private SearchStrategy strategy;
+	protected SearchStrategy strategy;
 
 	public void engine(GPSProblem myProblem, SearchStrategy myStrategy) {
 
@@ -80,12 +80,12 @@ public abstract class GPSEngine {
 
 	private boolean checkOpenAndClosed(Integer cost, GPSState state) {
 		for (GPSNode openNode : open) {
-			if (openNode.getState().compare(state) && openNode.getCost() <= cost) {
+			if (openNode.getState().equals(state) && openNode.getCost() <= cost) {
 				return true;
 			}
 		}
 		for (GPSNode closedNode : closed) {
-			if (closedNode.getState().compare(state) && closedNode.getCost() <= cost) {
+			if (closedNode.getState().equals(state) && closedNode.getCost() <= cost) {
 				return true;
 			}
 		}
@@ -96,7 +96,7 @@ public abstract class GPSEngine {
 		if (parent == null) {
 			return false;
 		}
-		return checkBranch(parent.getParent(), state) || state.compare(parent.getState());
+		return state.equals(parent.getState()) || checkBranch(parent.getParent(), state);
 	}
 
 	public abstract void addNode(GPSNode node);
