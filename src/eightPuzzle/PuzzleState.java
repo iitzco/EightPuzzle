@@ -23,7 +23,7 @@ public class PuzzleState implements GPSState {
 			return false;
 		return true;
 	}
-	
+
 	public int[][] getMap() {
 		return map;
 	}
@@ -39,14 +39,14 @@ public class PuzzleState implements GPSState {
 		}
 		throw new IllegalStateException();
 	}
-	
+
 	public PuzzleState(int[][] map) {
 		this.map = map;
 	}
-	
-	static public PuzzleState finalState(){
-		if(finalState == null){
-			int[][] map = {{1,2,3},{4,5,6},{7,8,-1}};
+
+	static public PuzzleState finalState() {
+		if (finalState == null) {
+			int[][] map = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, -1 } };
 			finalState = new PuzzleState(map);
 		}
 		return finalState;

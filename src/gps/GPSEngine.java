@@ -48,7 +48,6 @@ public abstract class GPSEngine {
 				}
 			}
 		}
-
 		if (finished) {
 			System.out.println("OK! solution found!");
 		} else if (failed) {

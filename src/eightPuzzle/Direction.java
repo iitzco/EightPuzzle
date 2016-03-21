@@ -2,9 +2,9 @@ package eightPuzzle;
 
 import java.awt.Point;
 
-public enum Direction{
+public enum Direction {
 	LEFT, DOWN, RIGHT, UP;
-	
+
 	@Override
 	public String toString() {
 		switch (this) {
@@ -20,20 +20,20 @@ public enum Direction{
 			throw new IllegalStateException();
 		}
 	}
-	
+
 	public Point getDelta() {
 		switch (this) {
 		case LEFT:
-			return new Point(-1, 0);
-		case DOWN:
 			return new Point(0, -1);
-		case RIGHT:
+		case DOWN:
 			return new Point(1, 0);
-		case UP:
+		case RIGHT:
 			return new Point(0, 1);
+		case UP:
+			return new Point(-1, 0);
 		default:
 			throw new IllegalStateException();
 		}
 	}
-	
+
 }
