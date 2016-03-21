@@ -14,22 +14,7 @@ import gps.api.GPSState;
 public class Puzzle implements GPSProblem {
 
 	public static void main(String[] args) {
-		new GPSEngine() {
-
-			@Override
-			public void addNode(GPSNode node) {
-				switch (strategy) {
-				case DFS:
-					open.add(0, node);
-					break;
-				case BFS:
-					open.add(node);
-				default:
-					break;
-				}
-
-			}
-		}.engine(new Puzzle(), SearchStrategy.BFS);
+		//TODO
 	}
 
 	@Override
@@ -52,11 +37,8 @@ public class Puzzle implements GPSProblem {
 
 	@Override
 	public List<GPSRule> getRules() {
-		List<GPSRule> rules = new LinkedList<GPSRule>();
-		for (Direction d : Direction.values()) {
-			rules.add(new PuzzleRule(d));
-		}
-		return rules;
+		//TODO
+		return null;
 	}
 
 	// No se usa (todavia)
