@@ -9,3 +9,5 @@ Recibe como input el estado inicial del tablero, en el formato del siguiente eje
 ```
 
 Donde **-1** representa el espacio vacío.
+
+Pueden encontrar mas inputs [aqui](https://gist.github.com/iitzco/6af2bdf6ba184672a38e)
