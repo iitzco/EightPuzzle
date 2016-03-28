@@ -28,8 +28,8 @@ public abstract class GPSEngine {
 		boolean finished = false;
 		boolean failed = false;
 		long explosionCounter = 0;
-
 		open.add(rootNode);
+		bestCosts.put(rootNode.getState(), 0);
 		while (!failed && !finished) {
 			if (open.size() <= 0) {
 				failed = true;
@@ -54,6 +54,10 @@ public abstract class GPSEngine {
 	}
 
 	private boolean explode(GPSNode node) {
+		if(bestCosts.containsKey(node) && bestCosts.get(node.getState()) < node.getCost()){
+			return false;
+		}
+		updateBest(node);
 		if (problem.getRules() == null) {
 			System.err.println("No rules!");
 			return false;
@@ -69,7 +73,6 @@ public abstract class GPSEngine {
 				GPSNode newNode = new GPSNode(newState, node.getCost() + rule.getCost());
 				newNode.setParent(node);
 				open.add(newNode);
-				updateBest(newNode);
 			}
 		}
 		return true;
@@ -80,9 +83,6 @@ public abstract class GPSEngine {
 	}
 
 	private void updateBest(GPSNode node) {
-		if (bestCosts.containsKey(node.getState())) {
-			bestCosts.remove(node.getState());
-		}
 		bestCosts.put(node.getState(), node.getCost());
 	}
 
