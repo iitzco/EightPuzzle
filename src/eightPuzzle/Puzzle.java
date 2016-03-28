@@ -1,44 +1,35 @@
 package eightPuzzle;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
-
 import gps.GPSEngine;
-import gps.GPSNode;
 import gps.SearchStrategy;
 import gps.api.GPSProblem;
 import gps.api.GPSRule;
 import gps.api.GPSState;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Puzzle implements GPSProblem {
 
+	static GPSEngine pEngine;
+
 	public static void main(String[] args) {
-		new GPSEngine() {
-
-			@Override
-			public void addNode(GPSNode node) {
-				switch (strategy) {
-				case DFS:
-					open.add(0, node);
-					break;
-				case BFS:
-					open.add(node);
-				default:
-					break;
-				}
-
-			}
-		}.engine(new Puzzle(), SearchStrategy.BFS);
+		pEngine = new PuzzleEngine();
+		try{
+			pEngine.engine(new Puzzle(), SearchStrategy.BFS);
+		}catch(StackOverflowError e){
+			System.out.println("Solution (if any) too deep for stack.");
+		}
 	}
 
 	@Override
 	public GPSState getInitState() {
 		Scanner s = new Scanner(System.in);
-		int[][] map = new int[3][3];
+		int[][] map = new int[PuzzleState.LENGTH][PuzzleState.LENGTH];
 		int index = 0;
-		while (index < 9) {
-			map[index / 3][index % 3] = s.nextInt();
+		while (index < PuzzleState.LENGTH * PuzzleState.LENGTH) {
+			map[index / PuzzleState.LENGTH][index % PuzzleState.LENGTH] = s.nextInt();
 			index++;
 		}
 		s.close();
@@ -59,10 +50,10 @@ public class Puzzle implements GPSProblem {
 		return rules;
 	}
 
-	// No se usa (todavia)
+	// Valor Heurística para A*
 	@Override
 	public Integer getHValue(GPSState state) {
-		return 1;
+		return 0;
 	}
 
 }

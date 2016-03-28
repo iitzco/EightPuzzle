@@ -7,16 +7,30 @@ import gps.api.GPSState;
 
 public class PuzzleState implements GPSState {
 	static PuzzleState finalState;
-	
+
 	static int LENGTH = 3;
 	static int BLANK = -1;
-	
+
 	int[][] map = new int[LENGTH][LENGTH];
 
 	public PuzzleState(int[][] map) {
 		this.map = map;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		int i = 0;
+		for (int[] row : map) {
+			for (int slot : row) {
+				if (slot != -1) {
+					hash += Math.pow(10, i) * slot;
+				}
+				i++;
+			}
+		}
+		return hash;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -47,7 +61,7 @@ public class PuzzleState implements GPSState {
 		}
 		throw new IllegalStateException();
 	}
-	
+
 	@Override
 	public String toString() {
 		String ret = "---------\n";
@@ -55,11 +69,10 @@ public class PuzzleState implements GPSState {
 			for (int j = 0; j < LENGTH; j++) {
 				ret += String.valueOf(map[i][j]) + ' ';
 			}
-			ret+='\n';
+			ret += '\n';
 		}
 		return ret;
 	}
-
 
 	static public PuzzleState finalState() {
 		if (finalState == null) {
@@ -68,6 +81,5 @@ public class PuzzleState implements GPSState {
 		}
 		return finalState;
 	}
-
 
 }

@@ -32,12 +32,9 @@ public class PuzzleRule implements GPSRule {
 		Point blank = puzzleState.getBlankCoords();
 		Point destination = (Point) blank.clone();
 		destination.translate(delta.x, delta.y);
-		if (destination.getX() < 0 || destination.getX() >= PuzzleState.LENGTH
-				|| destination.getY() < 0
-				|| destination.getY() >= PuzzleState.LENGTH) {
+		if (destination.getX() < 0 || destination.getX() >= PuzzleState.LENGTH || destination.getY() < 0 || destination.getY() >= PuzzleState.LENGTH) {
 			throw new NotAppliableException();
 		}
-
 		int[][] newMap = Copies.deepCopy(puzzleState.map);
 		newMap[blank.x][blank.y] = newMap[destination.x][destination.y];
 		newMap[destination.x][destination.y] = PuzzleState.BLANK;
