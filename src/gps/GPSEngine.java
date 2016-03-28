@@ -29,7 +29,6 @@ public abstract class GPSEngine {
 		boolean failed = false;
 		long explosionCounter = 0;
 		open.add(rootNode);
-		bestCosts.put(rootNode.getState(), 0);
 		while (!failed && !finished) {
 			if (open.size() <= 0) {
 				failed = true;
