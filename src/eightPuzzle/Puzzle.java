@@ -19,7 +19,7 @@ public class Puzzle implements GPSProblem {
 	public static void main(String[] args) {
 		pEngine = new PuzzleEngine();
 		try {
-			pEngine.engine(new Puzzle(), SearchStrategy.DFS);
+			pEngine.engine(new Puzzle(), SearchStrategy.ASTAR);
 		} catch (StackOverflowError e) {
 			System.out.println("Solution (if any) too deep for stack.");
 		}

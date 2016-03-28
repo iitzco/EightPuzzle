@@ -21,11 +21,11 @@ class PuzzleEngine extends GPSEngine {
 					// IDDFS Condition
 					return 0;
 				case GREEDY:
-					// Greedy Condition
-					return 0;
+					return (problem.getHValue(o1.getState()))
+							- (problem.getHValue(o2.getState()));
 				case ASTAR:
-					// AStar Condition
-					return 0;
+					return (problem.getHValue(o1.getState()) + o1.getCost())
+							- (problem.getHValue(o2.getState()) + o2.getCost());
 				default:
 					return 0;
 				}
