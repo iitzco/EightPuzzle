@@ -13,6 +13,7 @@ public class PuzzleState implements GPSState {
 
 	int[][] map = new int[LENGTH][LENGTH];
 
+
 	public PuzzleState(int[][] map) {
 		this.map = map;
 	}
@@ -73,6 +74,7 @@ public class PuzzleState implements GPSState {
 		}
 		return ret;
 	}
+
 
 	static public PuzzleState finalState() {
 		if (finalState == null) {
